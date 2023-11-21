@@ -8,7 +8,7 @@ jobs:
       - run:
           name: Git Pull on Windows EC2
           command: |
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/windows ec2-user@ec2-3-110-83-18.ap-south-1.compute.amazonaws.com 'cd /desktop/sangam && git pull'
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-110-83-18.ap-south-1.compute.amazonaws.com 'cd /desktop/sangam && git pull'
 
 workflows:
   version: 2
