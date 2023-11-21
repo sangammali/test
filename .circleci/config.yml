@@ -5,16 +5,18 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "56:83:8c:d6:67:84:cd:2d:b2:05:67:11:e8:3b:9f:21"
       - run:
           name: Git Pull on Windows EC2
           command: |
             # Replace these variables with your actual values
             instanceIp="3.110.83.18"
             username="Administrator"
-            pathToPrivateKey="$HOME/.ssh/windows.pem"
             
             # Run Git Pull command on the remote Windows instance using SSH and Git Bash
-            ssh -i $pathToPrivateKey $username@$instanceIp 'cd /C:\Users\Administrator\Desktop\sangam> && git pull'
+            ssh -o StrictHostKeyChecking=no $username@$instanceIp 'cd /c/path/to/your/project && git pull'
 
 workflows:
   version: 2
