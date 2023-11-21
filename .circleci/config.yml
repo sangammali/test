@@ -9,6 +9,9 @@ jobs:
       shell: powershell.exe
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:AzOE3B5QAgdBx7qlnr9d6ZK+6cPCanmlyJ8DUpkJKhI"
       - run:
           name: Configure AWS CLI
           command: |
