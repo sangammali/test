@@ -13,13 +13,8 @@ jobs:
             username="Administrator"
             pathToPrivateKey="$HOME/.ssh/windows.pem"
             
-            # Run Git Pull command on the remote Windows instance using PowerShell remoting
-            $session = New-PSSession -ComputerName $instanceIp -Credential $username -SSHTransport -KeyFile $pathToPrivateKey
-            Invoke-Command -Session $session -ScriptBlock {
-                cd C:\path\to\your\project
-                git pull
-            }
-            Remove-PSSession -Session $session
+            # Run Git Pull command on the remote Windows instance using SSH and Git Bash
+            ssh -i $pathToPrivateKey $username@$instanceIp 'cd /C:\Users\Administrator\Desktop\sangam> && git pull'
 
 workflows:
   version: 2
