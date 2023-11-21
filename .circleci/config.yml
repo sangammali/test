@@ -16,7 +16,7 @@ jobs:
             username="Administrator"
             
             # Run Git Pull command on the remote Windows instance using SSH and Git Bash
-            ssh -o StrictHostKeyChecking=no $username@$instanceIp 'cd /c/path/to/your/project && git pull'
+            ssh -o StrictHostKeyChecking=no $username@$instanceIp 'cd C:\Users\Administrator\Desktop\sangam> && git pull'
 
 workflows:
   version: 2
