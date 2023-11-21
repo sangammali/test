@@ -13,17 +13,13 @@ jobs:
               username="Administrator"
               pathToPrivateKey="$HOME/.ssh/windows.pem"
             
-            # Connect to Windows EC2 instance using PowerShell
-            mstsc /v:$instanceIp
-
-            # Wait for a few seconds to allow the RDP session to establish
-            Start-Sleep -Seconds 20
-
-            # Run Git Pull command on the remote Windows instance
-            Enter-PSSession -ComputerName $instanceIp -Credential $username
-            cd C:/desktop/sangam
-            git pull
-            Exit-PSSession
+           # Run Git Pull command on the remote Windows instance using PowerShell remoting
+            $session = New-PSSession -ComputerName $instanceIp -Credential $username -SSHTransport -KeyFile $pathToPrivateKey
+            Invoke-Command -Session $session -ScriptBlock {
+                cd C:\path\to\your\project
+                git pull
+            }
+            Remove-PSSession -Session $session
 
 
 workflows:
