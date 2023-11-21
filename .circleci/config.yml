@@ -8,7 +8,27 @@ jobs:
       - run:
           name: Git Pull on Windows EC2
           command: |
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-110-83-18.ap-south-1.compute.amazonaws.com 'cd /desktop/sangam && git pull'
+            # Replace these variables with your actual values
+            $instanceIp = "3.110.83.18"
+            $username = "ec2-user"
+            $pathToPrivateKey = "$HOME/.ssh/windows.pem"
+            
+            # Connect to Windows EC2 instance using PowerShell
+            mstsc /v:$instanceIp
+
+            # Wait for a few seconds to allow the RDP session to establish
+            Start-Sleep -Seconds 20
+
+            # Run Git Pull command on the remote Windows instance
+            Enter-PSSession -ComputerName $instanceIp -Credential $username
+            cd C:\path\to\your\project
+            git pull
+            Exit-PSSession
+      - run:
+          name: Close Remote Desktop Session
+          command: |
+            # Close the RDP session
+            taskkill /IM mstsc.exe
 
 workflows:
   version: 2
