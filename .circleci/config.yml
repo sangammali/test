@@ -9,18 +9,17 @@ jobs:
           name: Git Pull on Windows EC2
           command: |
             # Replace these variables with your actual values
-              instanceIp="3.110.83.18"
-              username="Administrator"
-              pathToPrivateKey="$HOME/.ssh/windows.pem"
+            instanceIp="3.110.83.18"
+            username="Administrator"
+            pathToPrivateKey="$HOME/.ssh/windows.pem"
             
-           # Run Git Pull command on the remote Windows instance using PowerShell remoting
+            # Run Git Pull command on the remote Windows instance using PowerShell remoting
             $session = New-PSSession -ComputerName $instanceIp -Credential $username -SSHTransport -KeyFile $pathToPrivateKey
             Invoke-Command -Session $session -ScriptBlock {
                 cd C:\path\to\your\project
                 git pull
             }
             Remove-PSSession -Session $session
-
 
 workflows:
   version: 2
