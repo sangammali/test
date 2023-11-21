@@ -1,31 +1,30 @@
 version: 2.1
-orbs:
-  win: circleci/windows@2.2.0
-
 jobs:
   build:
-    executor:
-      name: win/default
-      shell: powershell.exe
+    docker:
+      - image: cimg/base:stable
+
     steps:
       - checkout
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+
+    steps:
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:AzOE3B5QAgdBx7qlnr9d6ZK+6cPCanmlyJ8DUpkJKhI"
+            - 56:83:8c:d6:67:84:cd:2d:b2:05:67:11:e8:3b:9f:21
+
       - run:
-          name: Configure AWS CLI
-          command: |
-            aws configure set aws_access_key_id "${AWS_ACCESS_KEY_ID}"
-            aws configure set aws_secret_access_key "${AWS_SECRET_ACCESS_KEY}"
-            aws configure set default.region ap-south-1
-      - run:
-          name: Pull latest changes from Git
-          command: |
-            cd desktop/sangam
-            git pull
+          name: Git Pull on Windows EC2
+          command: ssh -o StrictHostKeyChecking=no -i ~/.ssh/your-private-key.pem ec2-user@your-windows-instance-ip 'cd /path/to/your/project && git pull'
 
 workflows:
   version: 2
-  build:
+  build_and_deploy:
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
