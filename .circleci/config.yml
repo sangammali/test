@@ -10,7 +10,7 @@ jobs:
           command: |
             # Replace these variables with your actual values
             $instanceIp = "3.110.83.18"
-            $username = "ec2-user"
+            $username = "Administrator"
             $pathToPrivateKey = "$HOME/.ssh/windows.pem"
             
             # Connect to Windows EC2 instance using PowerShell
@@ -21,14 +21,10 @@ jobs:
 
             # Run Git Pull command on the remote Windows instance
             Enter-PSSession -ComputerName $instanceIp -Credential $username
-            cd C:\path\to\your\project
+            cd C:/desktop/sangam
             git pull
             Exit-PSSession
-      - run:
-          name: Close Remote Desktop Session
-          command: |
-            # Close the RDP session
-            taskkill /IM mstsc.exe
+
 
 workflows:
   version: 2
