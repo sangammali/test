@@ -9,9 +9,9 @@ jobs:
           name: Git Pull on Windows EC2
           command: |
             # Replace these variables with your actual values
-              instanceIp = "3.110.83.18"
-              username = "Administrator"
-              pathToPrivateKey = "$HOME/.ssh/windows.pem"
+              instanceIp="3.110.83.18"
+              username="Administrator"
+              pathToPrivateKey="$HOME/.ssh/windows.pem"
             
             # Connect to Windows EC2 instance using PowerShell
             mstsc /v:$instanceIp
