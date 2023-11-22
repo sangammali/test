@@ -13,7 +13,7 @@ jobs:
       - run: 
           name: Pull from Git repository
           command: |
-            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 'cd /c/Users/Administrator/desktop/sangam && git pull'
+            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 'cd /c/Users/Administrator/desktop && git pull'
 workflows:
   version: 2
   build_and_deploy:
