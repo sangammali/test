@@ -4,13 +4,16 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - run:
+          name: Install sshpass
+          command: sudo apt-get install -y sshpass
       - add_ssh_keys:
           fingerprints:
             - "22:6c:06:c4:c4:13:ac:59:2f:37:89:34:b5:30:6f:0f"
       - run: 
           name: Pull from Git repository
           command: |
-            ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 'cd /c/Users/Administrator/desktop/sangam && git pull'
+            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 'cd /c/Users/Administrator/desktop/sangam && git pull'
 workflows:
   version: 2
   build_and_deploy:
