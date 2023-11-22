@@ -11,9 +11,9 @@ jobs:
           fingerprints:
             - "22:6c:06:c4:c4:13:ac:59:2f:37:89:34:b5:30:6f:0f"
       - run: 
-          name: Clone Git repository
+          name: Pull from Git repository
           command: |
-            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 "rm -rf C:/Users/Administrator/Desktop/sangam && git clone https://github.com/sangammali/test.git C:/Users/Administrator/Desktop/sangam"
+            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 'cd /c/Users/Administrator/Desktop/sangam && git pull'
 workflows:
   version: 2
   build_and_deploy:
