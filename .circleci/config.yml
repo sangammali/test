@@ -13,7 +13,7 @@ jobs:
       - run: 
           name: Clone Git repository
           command: |
-            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 "git clone https://github.com/sangammali/test.git C:/Users/Administrator/Desktop/sangam"
+            sshpass -p ${SSH_PASS} ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 "rm -rf C:/Users/Administrator/Desktop/sangam && git clone https://github.com/sangammali/test.git C:/Users/Administrator/Desktop/sangam"
 workflows:
   version: 2
   build_and_deploy:
