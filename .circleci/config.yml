@@ -7,7 +7,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "e3:8d:85:21:b7:ce:1d:48:2e:24:cd:29:1d:0a:61:99"
+            - "c7:31:2b:1a:b4:7e:f0:d2:90:e6:bb:36:c5:4e:8d:1c"
       - run:
           name: Install sshpass
           command: sudo apt-get update && sudo apt-get install -y sshpass
