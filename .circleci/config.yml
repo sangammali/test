@@ -1,29 +1,12 @@
+
 version: 2.1
 jobs:
   build:
-    docker:
-      - image: cimg/base:stable
     steps:
-      - checkout
       - add_ssh_keys:
           fingerprints:
-            - "c7:31:2b:1a:b4:7e:f0:d2:90:e6:bb:36:c5:4e:8d:1c"
-      - run:
-          name: Install sshpass
-          command: sudo apt-get update && sudo apt-get install -y sshpass
-      - run:
-          name: Git Pull on Windows EC2
+            - "22:6c:06:c4:c4:13:ac:59:2f:37:89:34:b5:30:6f:0f"
+      - run: 
+          name: Pull from Git repository
           command: |
-            # Replace these variables with your actual values
-            instanceIp="3.110.83.18"
-            username="Administrator"
-            
-            # Retrieve the password from the environment variable
-            password="$YOUR_ENV_VAR_NAME"
-            
-            # Debugging statements
-            echo "Username: $username"
-            echo "Password: $password"
-            
-            # Run Git Pull command on the remote Windows instance using SSH and Git Bash
-            echo -e "cd C:\\Users\\Administrator\\Desktop\\sangam && git pull" | sshpass -p "$password" ssh -v -o StrictHostKeyChecking=no $username@$instanceIp
+            ssh -o StrictHostKeyChecking=no Administrator@3.6.37.33 'cd /c/Users/Administrator/desktop/sangam && git pull'
