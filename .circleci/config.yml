@@ -12,7 +12,7 @@ jobs:
           name: Git Pull on Windows EC2
           command: |
             # Replace these variables with your actual values
-            instanceIp="172.31.38.151"
+            instanceIp="3.110.83.18"
             username="Administrator"
             
             # Run Git Pull command on the remote Windows instance using SSH and Git Bash
