@@ -7,7 +7,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "56:83:8c:d6:67:84:cd:2d:b2:05:67:11:e8:3b:9f:21"
+            - "e3:8d:85:21:b7:ce:1d:48:2e:24:cd:29:1d:0a:61:99"
       - run:
           name: Git Pull on Windows EC2
           command: |
