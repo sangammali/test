@@ -21,11 +21,9 @@ jobs:
             # Retrieve the password from the environment variable
             password="$YOUR_ENV_VAR_NAME"
             
+            # Debugging statements
+            echo "Username: $username"
+            echo "Password: $password"
+            
             # Run Git Pull command on the remote Windows instance using SSH and Git Bash
-            echo -e "cd C:\\Users\\Administrator\\Desktop\\sangam && git pull" | sshpass -p "$password" ssh -o StrictHostKeyChecking=no $username@$instanceIp
-
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - build
+            echo -e "cd C:\\Users\\Administrator\\Desktop\\sangam && git pull" | sshpass -p "$password" ssh -v -o StrictHostKeyChecking=no $username@$instanceIp
