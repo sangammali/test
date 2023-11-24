@@ -3,8 +3,4 @@ jobs:
   build:
     docker:
       - image: cimg/base:stable
-    steps:
-      - run:
-          name: Install sshpass
-          command: sudo apt-get install -y sshpass
-     
+
