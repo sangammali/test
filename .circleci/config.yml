@@ -7,4 +7,8 @@ jobs:
 
   new new
     
-
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
